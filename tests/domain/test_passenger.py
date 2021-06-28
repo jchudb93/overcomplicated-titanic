@@ -1,13 +1,12 @@
-import uuid
 from src.domain.passenger import Passenger 
 
 
 def test_passenger_model_init():
 
 	init_dict = {
-		"code": uuid.uuid4,
 		"passenger_id": 1,
 		"survived": 0,
+		"p_class": 1,
 		"name": "Braund, Mr. Owen Harris",
 		"sex": "male",
 		"age": 22,

@@ -1,11 +1,10 @@
-import uuid
 import dataclasses
 
 @dataclasses.dataclass
 class Passenger:
-	code: uuid.UUID
 	passenger_id: int
 	survived: int
+	p_class: int
 	name: str
 	sex: str
 	age: int
