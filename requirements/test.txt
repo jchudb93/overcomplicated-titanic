@@ -3,3 +3,4 @@ pytest
 tox
 coverage
 pytest-cov
+requests

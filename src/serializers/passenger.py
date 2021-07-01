@@ -12,7 +12,7 @@ class PassengerJsonEncoder(json.JSONEncoder):
 				"age": o.age,
 				"sib_sp": o.sib_sp,
 				"parch": o.parch,
-				"ticket": o.ticket,
+				"ticket": str(o.ticket),
 				"fare": o.fare,
 				"cabin": str(o.cabin)
 			}

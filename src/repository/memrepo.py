@@ -1,4 +1,4 @@
-from src.domain.passenger import Passenger
+from domain.passenger import Passenger
 
 class MemRepo:
 	def __init__(self, data):
