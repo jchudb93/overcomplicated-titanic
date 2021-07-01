@@ -12,3 +12,4 @@ def app():
 	assert settings.app_name == "Titanic API"
 	assert response.status_code == 200
 	assert response.json() == {"msg": "Hello World"}
+	return client
