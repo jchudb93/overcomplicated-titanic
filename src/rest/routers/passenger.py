@@ -3,10 +3,13 @@ import json
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 
+from domain.passenger import Passenger
 from log import REQUEST_LOGGER
+from repository.firestore_repository.passenger_repository import FirestoreRepository
 from repository.memrepo import MemRepo
 from serializers.passenger import PassengerJsonEncoder
-from use_cases.passenger_list import passenger_list_use_case
+from use_cases.passenger_list import passenger_list_use_case, create_passenger_use_case
+from pydantic import BaseModel
 
 router = APIRouter()
 
@@ -40,6 +43,13 @@ passengers = [
 ]
 
 
+class CreatePassengerModel(BaseModel):
+    passenger_id: int
+    name: str
+    sex: str
+    age: int
+
+
 @router.get("/passengers")
 async def passenger_list():
     REQUEST_LOGGER.info('Request: /passengers')
@@ -49,4 +59,14 @@ async def passenger_list():
     content = json.dumps(result, cls=PassengerJsonEncoder)
 
     headers = {"status_code": "200", "mimetype": "application/json"}
+    return JSONResponse(content=content, headers=headers)
+
+
+@router.post("/passengers/")
+async def create_passenger(passenger: CreatePassengerModel):
+    repo = FirestoreRepository()
+    result = create_passenger_use_case(repo, passenger)
+
+    content = json.dumps(result)
+    headers = {"status_code": "201", "mimetype": "application/json"}
     return JSONResponse(content=content, headers=headers)
