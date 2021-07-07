@@ -20,3 +20,13 @@ class Passenger:
 
 	def to_dict(self):
 		return dataclasses.asdict(self)
+
+	def __eq__(self, other):
+		if isinstance(other, Passenger):
+			return NotImplemented
+		else:
+			equal_id = other.passenger_id == self.passenger_id
+			equal_survived = other.survived == self.survived
+			equal_pclass = other.p_class == self.p_class
+			equal_name = other.name == self.name
+			return equal_id and equal_survived and equal_pclass and equal_name

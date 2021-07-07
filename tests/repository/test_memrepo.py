@@ -30,7 +30,7 @@ def passenger_dict():
 			"parch": 0,
 			"ticket": "PC 17599",
 			"fare": 71.2833,
-			"cabin":"C85"
+			"cabin": "C85"
 		}
 	]
 
@@ -38,5 +38,4 @@ def passenger_dict():
 def test_repository_list_without_parameters(passenger_dict):
 	repo = MemRepo(passenger_dict)
 	passengers = [Passenger.from_dict(i) for i in passenger_dict]
-
 	assert repo.list() == passengers
