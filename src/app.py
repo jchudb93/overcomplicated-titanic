@@ -5,7 +5,7 @@ from rest.routers import passenger
 
 def create_app():
 
-	app  = FastAPI()
+	app = FastAPI()
 	app.include_router(passenger.router)
 
 	@lru_cache()
